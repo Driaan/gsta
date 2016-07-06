@@ -1,0 +1,39 @@
+﻿<Application x:Class="Application"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:gsta"
+             xmlns:model="clr-namespace:gsta.Model"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <local:popupPreviewUserControl x:Key="popupPreviewUserControl" />
+            <local:timesheetUserControl x:Key="timesheetUserControl" />
+            <model:ApplicationModel x:Key="ApplicationModel" />
+
+            <local:ApplicationViewModel x:Key="ApplicationViewModel" />
+            <local:emailUserControl x:Key="emailUserControl" />
+            <local:submitReviewUserControl x:Key="submitReviewUserControl" />
+            <FontFamily x:Key="openSansFont">/resources/OpenSans-Regular.ttf#Open Sans</FontFamily>
+            <FontFamily x:Key="robotoFont">/resources/Roboto-Medium.ttf</FontFamily>
+            <FontFamily x:Key="robotoRegularFont">/resources/Roboto-Regular.ttf#Roboto</FontFamily>
+            <FontFamily x:Key="robotoLightFont">/resources/Roboto-Light.ttf#Roboto Light</FontFamily>
+            <FontFamily x:Key="robotoThinFont">/resources/Roboto-Thin.ttf#Roboto Thin</FontFamily>
+            <Image x:Key="closeImage"
+                   x:Shared="False"
+                   Source="resources/ic_close_white_24dp_1x.png" />
+            <Image x:Key="emailSendingGif"
+                   x:Shared="False"
+                   Source="resources/emailsending.gif" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,792 @@
+﻿<UserControl x:Class="timesheetUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:gsta"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Width="350"
+             Height="465"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             DataContext="{DynamicResource ApplicationViewModel}"
+             FontFamily="{DynamicResource robotoRegularFont}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Pink.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="startPress">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseOuter"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseOuter"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterBig"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="160">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterBig"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="160">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterSmall"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterSmall"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="150">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseMiddle"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="142">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseMiddle"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="142">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="progInd"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="70" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="210">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="progInd"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="70" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="210">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="180">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="startButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="startButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="32" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="32" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="startTimesheetLabel"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="0,0,0,130" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,0,240,380">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="restartButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="restartButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="100">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="130" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="50">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(TextElement.FontSize)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="12" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="24">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="saveButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="42">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="saveButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="42">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="hideCountdownLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="120">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="startTimesheetLabel"
+                                               Storyboard.TargetProperty="(TextElement.FontFamily)">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <FontFamily>/gsta;component/Resources/#Roboto Light</FontFamily>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                    <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                        <DiscreteObjectKeyFrame.Value>
+                            <FontFamily>/gsta;component/Resources/#Roboto Medium</FontFamily>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="restartClick">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="restartButton"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="360">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="editDetailsExpand">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="200">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="80">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon1"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="20" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon1"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="20" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="resetAnim">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseOuter"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="200" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseOuter"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="200" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterBig"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="160" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterBig"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="160" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterSmall"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.1" Value="150" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseCenterSmall"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.1" Value="150" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseMiddle"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="142" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="bgColorEllipseMiddle"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="142" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="progInd"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="210" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="70" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="progInd"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="210" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="70" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="180" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="startButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="startButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="32" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="32" />
+                </DoubleAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="startTimesheetLabel"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <SplineThicknessKeyFrame KeyTime="0:0:0.2" Value="0,0,240,380" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0,0,0,130">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="restartButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="30" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="restartButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="30" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="130" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="100" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="50" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="timerLabel"
+                                               Storyboard.TargetProperty="(TextElement.FontSize)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="24" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="12">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="saveButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="42" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="saveButton"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="42" />
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="hideCountdownLabel"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="30" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="editDetailsCollapse">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="200" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="editDetailsBORDER"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="80" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon1"
+                                               Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="20" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="packIcon1"
+                                               Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <SplineDoubleKeyFrame KeyTime="0" Value="20" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="30">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="startButton">
+            <BeginStoryboard Storyboard="{StaticResource startPress}" />
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid Background="White">
+        <Ellipse x:Name="bgColorEllipseOuter"
+                 Width="0"
+                 Height="0"
+                 Margin="0"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Fill="{Binding _accentSolidColorBrush}" />
+        <Ellipse x:Name="bgColorEllipseCenterBig"
+                 Width="0"
+                 Height="0"
+                 Margin="0"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Fill="#FFFF8F60" />
+        <Ellipse x:Name="bgColorEllipseCenterSmall"
+                 Width="0"
+                 Height="0"
+                 Margin="0"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Fill="#FFFF986C" />
+        <Ellipse x:Name="bgColorEllipseMiddle"
+                 Width="0"
+                 Height="0"
+                 Margin="75,132.5"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Fill="{Binding _accentSolidColorBrush}" />
+        <Grid Margin="0"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <ProgressBar x:Name="progInd"
+                         Grid.Column="0"
+                         Width="70"
+                         Height="70"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         BorderBrush="{x:Null}"
+                         BorderThickness="1"
+                         Foreground="#FFFF6D30"
+                         IsIndeterminate="True"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"
+                         Value="100" />
+        </Grid>
+        <Button x:Name="startButton"
+                Width="60"
+                Height="60"
+                Margin="0"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                BorderThickness="0"
+                Foreground="{Binding _accentSolidColorBrush}"
+                Style="{DynamicResource ellipseButtonStyle}">
+            <materialDesign:PackIcon x:Name="packIcon"
+                                     Width="32"
+                                     Height="32"
+                                     Foreground="White"
+                                     Kind="Play"
+                                     RenderTransformOrigin="0.5,0.5">
+                <materialDesign:PackIcon.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </materialDesign:PackIcon.RenderTransform>
+            </materialDesign:PackIcon>
+        </Button>
+        <Rectangle Height="25"
+                   VerticalAlignment="Top"
+                   Fill="#7F464646"
+                   StrokeThickness="0" />
+        <Label x:Name="startTimesheetLabel"
+               Margin="0,0,0,130"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Content="Timesheet"
+               FontFamily="/gsta;component/Resources/#Roboto Light"
+               FontSize="16"
+               Foreground="{Binding _accentSolidColorBrush}"
+               d:LayoutOverrides="Width" />
+        <Grid Height="30"
+              Margin="160,0,160,27.5"
+              VerticalAlignment="Bottom">
+            <Button x:Name="restartButton"
+                    Width="0"
+                    Height="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#DDFFFFFF"
+                    RenderTransformOrigin="0.5,0.5"
+                    Style="{DynamicResource textButtonStyle}"
+                    ToolTip="Restart"
+                    d:LayoutOverrides="LeftMargin, RightMargin">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Width="Auto"
+                                         Height="Auto"
+                                         Foreground="#DD393939"
+                                         Kind="Refresh" />
+            </Button>
+        </Grid>
+        <Label x:Name="timerLabel"
+               Width="0"
+               Height="0"
+               Margin="0"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Content="0h 0m 0s"
+               FontFamily="/gsta;component/Resources/#Roboto Thin"
+               FontSize="36"
+               Foreground="#DDFFFFFF"
+               Padding="0" />
+        <Grid Height="42"
+              Margin="154,0,154,71.5"
+              VerticalAlignment="Bottom">
+            <Button x:Name="saveButton"
+                    Width="0"
+                    Height="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#DDFFFFFF"
+                    RenderTransformOrigin="0.5,0.5"
+                    Style="{DynamicResource textButtonStyle}"
+                    ToolTip="Save"
+                    d:LayoutOverrides="LeftMargin, RightMargin">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <materialDesign:PackIcon Width="Auto"
+                                         Height="Auto"
+                                         Foreground="#DD393939"
+                                         Kind="ContentSave" />
+            </Button>
+        </Grid>
+        <Label x:Name="hideCountdownLabel"
+               Width="0"
+               Height="20"
+               Margin="19,62.102,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               VerticalContentAlignment="Center"
+               Foreground="#91000000"
+               Padding="0" />
+        <Border x:Name="editDetailsBORDER"
+                Width="0"
+                Height="0"
+                Margin="0,32.5,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Background="#FFFF814C"
+                CornerRadius="5">
+            <Grid x:Name="editDetailsGrid">
+                <materialDesign:PackIcon x:Name="packIcon1"
+                                         Width="30"
+                                         Height="30"
+                                         HorizontalAlignment="Right"
+                                         Foreground="#FF535353"
+                                         Kind="Pencil" />
+                <xctk:WatermarkTextBox x:Name="descriptionTextBox"
+                                       Margin="10,35.403,50,10"
+                                       BorderBrush="{x:Null}"
+                                       BorderThickness="0"
+                                       Foreground="#DD000000"
+                                       SelectionBrush="#FFFF814C"
+                                       TextWrapping="Wrap"
+                                       Watermark="Description" />
+                <xctk:WatermarkComboBox x:Name="subjectComboBox"
+                                        Width="140"
+                                        Margin="10,10,50,0"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="{x:Null}"
+                                        BorderThickness="0"
+                                        Watermark="Subject">
+                    <xctk:WatermarkComboBox.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Offset="0" Color="#FFF0F0F0" />
+                            <GradientStop Offset="1" Color="White" />
+                        </LinearGradientBrush>
+                    </xctk:WatermarkComboBox.Background>
+                    <ComboBoxItem Content="Test Item 1" />
+                    <ComboBoxItem Content="Test Item 2" />
+                    <ComboBoxItem Content="Test Item 3" />
+                    <ComboBoxItem Content="Test Item 4" />
+                </xctk:WatermarkComboBox>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

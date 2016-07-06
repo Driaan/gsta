@@ -1,0 +1,265 @@
+﻿<Window x:Class="SignInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Obselete="clr-namespace:Xceed.Wpf.Toolkit.Obselete;assembly=Xceed.Wpf.Toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:gsta"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        x:Name="window"
+        Title="SignInWindow"
+        Width="370"
+        Height="485"
+        AllowsTransparency="True"
+        Background="Transparent"
+        DataContext="{DynamicResource ApplicationViewModel}"
+        FontFamily="{DynamicResource robotoRegularFont}"
+        ResizeMode="NoResize"
+        TextElement.FontWeight="Medium"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/styles.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Key="signInExpand">
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="bodyGrid"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="0,30,0,0" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,30,0,240">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="signGrid"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="10,-60,10,10" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="10,-10,10,10">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="label"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="0,-240,0,0" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,-170,0,0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label"
+                                               Storyboard.TargetProperty="(TextElement.FontSize)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="14" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="12">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="signInCollapse">
+                <ThicknessAnimationUsingKeyFrames IsAdditive="False"
+                                                  IsCumulative="False"
+                                                  Storyboard.TargetName="bodyGrid"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <SplineThicknessKeyFrame KeyTime="0" Value="0,30,0,240" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,30,0,0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="signGrid"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="10,-10,10,10" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="10,-60,10,10">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CubicEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="label"
+                                                  Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                    <EasingThicknessKeyFrame KeyTime="0" Value="0,-170,0,0" />
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0,-240,0,0">
+                        <EasingThicknessKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </EasingThicknessKeyFrame.EasingFunction>
+                    </EasingThicknessKeyFrame>
+                </ThicknessAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label"
+                                               Storyboard.TargetProperty="(TextElement.FontSize)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="12" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="14">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="windowLoadAnimation">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="label"
+                                               Storyboard.TargetProperty="(UIElement.Opacity)">
+                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                    <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1">
+                        <EasingDoubleKeyFrame.EasingFunction>
+                            <ExponentialEase EasingMode="EaseOut" Exponent="1" />
+                        </EasingDoubleKeyFrame.EasingFunction>
+                    </EasingDoubleKeyFrame>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="window">
+            <BeginStoryboard Storyboard="{StaticResource signInExpand}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+            <BeginStoryboard x:Name="signInCollapse_BeginStoryboard" Storyboard="{StaticResource signInCollapse}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource windowLoadAnimation}" />
+        </EventTrigger>
+    </Window.Triggers>
+
+
+    <Grid Width="350"
+          Height="465"
+          Background="White"
+          Effect="{DynamicResource z-depth1}">
+        <Grid x:Name="signGridHolderGrid"
+              Margin="0,225,0,0"
+              Background="#FFE2E2E2">
+            <Grid x:Name="signGrid"
+                  Width="330"
+                  Height="240"
+                  Margin="10,-60,10,60">
+                <Rectangle x:Name="rectangle"
+                           Width="330"
+                           Height="240"
+                           Fill="#FFE2E2E2"
+                           RadiusX="3"
+                           RadiusY="3" />
+                <Grid Height="30"
+                      Margin="40,0,40,10"
+                      VerticalAlignment="Bottom"
+                      ToolTip="This feature is not yet enabled">
+                    <Button x:Name="useOfflineButton"
+                            Height="Auto"
+                            Background="#FF464646"
+                            BorderBrush="#FF464646"
+                            Content="USE OFFLINE"
+                            FontSize="14"
+                            Foreground="#DDFFFFFF"
+                            IsEnabled="False"
+                            Padding="0"
+                            ToolTip="This feature is not yet enabled" />
+                </Grid>
+                <TextBox x:Name="usernameTextBox"
+                         Height="30"
+                         Margin="40,39.999,40,0"
+                         VerticalAlignment="Top"
+                         Text="{Binding username,
+                                        Source={x:Static local:Settings.Default}}" />
+                <TextBox x:Name="passwordTextBox"
+                         Height="30"
+                         Margin="40,0,40,108.658"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding password,
+                                        Source={x:Static local:Settings.Default}}" />
+                <Button x:Name="signInButton"
+                        Height="30"
+                        Margin="40,0,40,68.658"
+                        VerticalAlignment="Bottom"
+                        Background="#FF464646"
+                        BorderBrush="#FF464646"
+                        Content="SIGN IN"
+                        FontSize="14"
+                        Foreground="#DDFFFFFF"
+                        ToolTip="Sign in with your GreatSoft Account" />
+                <Label x:Name="usernameLabel"
+                       Margin="40,13.656,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="USERNAME"
+                       ToolTip="Your GreatSoft Username" />
+                <Label x:Name="passwordLabel"
+                       Margin="40,74.999,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="PASSWORD"
+                       ToolTip="Your GreatSoft Password" />
+                <materialDesign:PackIcon x:Name="packIcon"
+                                         Width="12"
+                                         Height="18.843"
+                                         Margin="114.047,77.15,0,0"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"
+                                         Foreground="#FF9B989A"
+                                         Kind="Information"
+                                         ToolTip="Don't worry, your details are secured using ASP.net's native Encryption" />
+            </Grid>
+        </Grid>
+        <Grid x:Name="bodyGrid"
+              Margin="0,30,0,0"
+              Background="#FFF4F4F4">
+            <Image HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   gif:ImageBehavior.AnimatedSource="Resources/log.gif" />
+            <Label x:Name="label"
+                   Margin="0,-240,0,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="Sign in with your GreatSoft Account"
+                   FontSize="14"
+                   d:LayoutOverrides="Width" />
+        </Grid>
+        <Grid x:Name="handleGrid"
+              Height="30"
+              VerticalAlignment="Top"
+              Background="#FF464646">
+
+            <Button x:Name="closeButton"
+                    Width="30"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Padding="0"
+                    ToolTip="Close">
+                <materialDesign:PackIcon Kind="WindowClose" />
+            </Button>
+            <Button x:Name="minimizeButton"
+                    Width="30"
+                    Height="30"
+                    Margin="0,0,30,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Padding="0"
+                    ToolTip="Minimize">
+                <materialDesign:PackIcon Kind="WindowMinimize" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
